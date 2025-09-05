@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GB Wallet</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #202b2b;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+    .balance-display {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 18px;
+      background: rgba(20,20,20,0.9);
+      padding: 8px 16px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 200, 255, 0.4);
+      color: #00ffaa;
+      font-weight: bold;
+    }
+    .card {
+      background: rgba(20,20,20,0.9);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.2);
+      max-width: 350px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 24px;
+      color: #00eaff;
+      margin-bottom: 20px;
+    }
+    label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 5px;
+      color: #bbb;
+    }
+    input {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 8px;
+      width: 100px;
+      text-align: center;
+      color: #00ffaa;
+      font-weight: bold;
+    }
+    button {
+      margin: 8px 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #00eaff, #00ffaa);
+      color: #0d0d0d;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px rgba(0,255,200,0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="balance-display">
+    GB Coins: <span id="balance">100</span>
+  </div>
+
+  <div class="card">
+    <h1>GB Wallet</h1>
+
+    <label>Bet Amount</label>
+    <input type="number" id="betAmount" value="10"><br>
+
+    <a href="timer.html">
+    <button onclick="placeBet()">Place Bet</button></a>
+    <button onclick="finishTask(true)">Completed the task</button>
+    <button onclick="finishTask(false)">Give up on the task</button>
+  </div>
+
+  <script>
+    let balance = 100;
+    let betAmount = 0;
+
+    function updateBalance() {
+      document.getElementById("balance").textContent = balance;
+    }
+
+    function placeBet() {
+      const amount = parseInt(document.getElementById("betAmount").value);
+      if (amount > balance || amount <= 0) {
+        alert("Invalid bet amount!");
+        return;
+      }
+      betAmount = amount;
+      balance -= amount;
+      updateBalance();
+      alert(You placed a bet of ${amount} GB);
+    }
+
+    function finishTask(success) {
+      if (betAmount === 0) {
+        alert("No active bet!");
+        return;
+      }
+      if (success) {
+        balance += betAmount * 2;
+        alert(Completed the task! Gained ${betAmount * 2} GB);
+      } else {
+        alert(Gave up on the task. Lost ${betAmount} GB);
+      }
+      betAmount = 0;
+      updateBalance();
+    }
+  </script>
+</body>
+</html>

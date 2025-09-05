@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Timer (Hours + Minutes)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #timer {
+      font-size: 2rem;
+      margin: 20px;
+    }
+    input {
+      padding: 5px;
+      font-size: 1rem;
+      width: 60px;
+      text-align: center;
+      margin: 5px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1> TIMER </h1>
+
+  <label>Hours: </label>
+  <input type="number" id="hoursInput" min="0" value="0">
+  <label>Minutes: </label>
+  <input type="number" id="minutesInput" min="0" value="1"><br><br>
+
+  <div id="timer">00:00:00</div>
+
+  <button onclick="startTimer()">Start</button>
+  <button onclick="submitTask()">Submit</button>
+  <a href="lalala2.html">
+  <button onclick="drawWheel()">idk</button></a>
+
+  <script>
+    let time = 0; 
+    let timerInterval;
+
+    function updateTimerDisplay() {
+      const hours = Math.floor(time / 3600);
+      const minutes = Math.floor((time % 3600) / 60);
+      const seconds = time % 60;
+      document.getElementById("timer").textContent =
+        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval); // reset if already running
+
+      const hrs = parseInt(document.getElementById("hoursInput").value) || 0;
+      const mins = parseInt(document.getElementById("minutesInput").value) || 0;
+
+      if (hrs < 0 || mins < 0 || (hrs === 0 && mins === 0)) {
+        alert("Please enter a valid time!");
+        return;
+      }
+
+      time = (hrs * 3600) + (mins * 60); 
+      updateTimerDisplay();
+
+      timerInterval = setInterval(() => {
+        if (time > 0) {
+          time--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          alert(" Time’s up!");
+        }
+      }, 1000);
+    }
+
+    function submitTask() {
+      clearInterval(timerInterval);
+
+      const hrsLeft = Math.floor(time / 3600);
+      const minsLeft = Math.floor((time % 3600) / 60);
+      const secsLeft = time % 60;
+
+      alert(`✅ Task submitted with ${hrsLeft}h ${minsLeft}m ${secsLeft}s left!`);
+    }
+  </script>
+</body>
+</html>
+
