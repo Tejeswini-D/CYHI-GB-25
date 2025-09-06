@@ -589,7 +589,7 @@
     timerInterval = setInterval(() => {
       if (totalSeconds <= 0) {
         clearInterval(timerInterval);
-        alert("⏰ Time's up! You lost your bet.");
+        alert(" Time's up! You lost your bet.");
         gameRunning = false;
         return;
       }
@@ -608,9 +608,9 @@
       let currentCoins = parseInt(coinValue.textContent) || 0;
       currentCoins += reward;
       coinValue.textContent = currentCoins;
-      alert(`✅ Task completed! You earned ${reward} coins.`);
+      alert(`Task completed! You earned ${reward} coins.`);
     } else {
-      alert("⏰ Too late! You already lost your bet.");
+      alert(" Too late! You already lost your bet.");
     }
     hoursDisplay.textContent = '0';
     minutesDisplay.textContent = '0';
@@ -624,3 +624,4 @@
 <audio id="spinAudio" src="spin-sound.mp3" preload="auto"></audio>
 </body>
 </html>
+
