@@ -6,14 +6,13 @@
   :root {
     --bg: #0f121a;
     --panel: #151d28;
-    --accent: #22c55e;         /* Neon green */
-    --accent-2: #4ade80;       /* Lighter neon green */
+    --accent: #22c55e;       
+    --accent-2: #4ade80;       
     --text: #e8fbe8;
     --muted: #a5d7a7;
     --shadow: 0 10px 30px rgba(0, 255, 100, 0.2);
     --radius: 16px;
   }
-
   body {
     margin: 0;
     font-family: 'Press Start 2P',monospace;
@@ -25,7 +24,6 @@
     justify-content: center;
     height: 100vh;
   }
-
   .wheel-container {
     position: relative;
     display: inline-block;
@@ -34,7 +32,6 @@
     background: var(--panel);
     padding: 8px;
   }
-
   .pointer {
     width: 0;
     height: 0;
@@ -47,14 +44,12 @@
     transform: translateY(-50%);
     z-index: 10;
   }
-
   canvas {
     border-radius: 50%;
     border: 4px solid rgba(255, 255, 255, 0.05);
     transition: transform 4s cubic-bezier(.18, .9, .24, 1);
     background: #121e15;
   }
-
   .controls {
     margin-top: 24px;
     text-align: center;
@@ -74,11 +69,9 @@
     margin: 6px;
     outline: none;
   }
-
   input::placeholder {
     color: var(--muted);
   }
-
   button {
     margin-top: 12px;
     padding: 10px 16px;
@@ -91,7 +84,6 @@
     font-weight: bold;
     filter: drop-shadow(0 6px 12px rgba(34, 255, 123, 0.3));
   }
-
   button:hover {
     opacity: 0.9;
   }
@@ -105,7 +97,6 @@
 </style>
 </head>
 <body>
-
   <div class="wheel-container">
     <div class="pointer"></div>
     <canvas id="wheel" width="300" height="300"></canvas>
@@ -152,40 +143,57 @@
     function addTask() {
       const input = document.getElementById("taskInput");
       const task = input.value.trim();
-
       if (task && !tasks.includes(task)) {
         tasks.push(task);
         input.value = "";
         drawWheel();
       }
     }
-
 function spin() {
   if (tasks.length === 0) {
     alert("Add some tasks first!");
     return;
   }
+  // Play spin sound
+  const audio = document.getElementById("spinAudio");
+  if (audio) audio.play();
   const sliceDeg = 360 / tasks.length;
-  const extraSpins = (4 + Math.floor(Math.random() * 3)) * 360;
-  const randomOffset = Math.random() * sliceDeg;
-  const finalRotation = extraSpins + randomOffset;
-
-  currentRotation += finalRotation;
-  canvas.style.transform = `rotate(${currentRotation}deg)`;
-
-  setTimeout(() => {
-    const normalizedRotation = currentRotation % 360;
-    const pointerAngle = (360 - normalizedRotation + 90) % 360;
-    const index = Math.floor(pointerAngle / sliceDeg) % tasks.length;
-    const selectedTask=tasks[index];
-    result.textContent="Result: "+selectedTask;
-    if(window.opener && window.opener.document){
-        const taskTitle=window.opener.document.querySelector(".task-title");
-        if(taskTitle)taskTitle.textContent=selectedTask;
+  const duration = 10000; // 10 seconds
+  const start = performance.now();
+  const spins = 5 + Math.random() * 2; // Total rotations
+  const startRotation = currentRotation;
+  const endRotation = startRotation + spins * 360;
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+  function animate(now) {
+    const elapsed = now - start;
+    const t = Math.min(1, elapsed / duration);
+    const easedT = easeOutCubic(t);
+    currentRotation = startRotation + (endRotation - startRotation) * easedT;
+    canvas.style.transform = `rotate(${currentRotation}deg)`;
+    if (t < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      // Done spinning – determine result
+      const normalizedRotation = currentRotation % 360;
+      const pointerAngle = (360 - normalizedRotation + 90) % 360;
+      const index = Math.floor(pointerAngle / sliceDeg) % tasks.length;
+      const selectedTask = tasks[index];
+      result.textContent = "Result: " + selectedTask;
+      // Send to opener window if needed
+      if (window.opener && window.opener.document) {
+        const taskTitle = window.opener.document.querySelector(".task-title");
+        if (taskTitle) taskTitle.textContent = selectedTask;
+      }
+      // Remove selected task & redraw
+      tasks.splice(index, 1);
+      drawWheel();
     }
-    tasks.splice(index,1);
-    drawWheel();
-},4200);}
+  }
+  requestAnimationFrame(animate);
+}
   </script>
+  <audio id="spinAudio" src="wheel.mp3.mp3" preload="auto"></audio>
 </body>
 </html>
