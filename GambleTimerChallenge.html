@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -32,7 +33,12 @@
                 <span class="time-value">H</span>
               </div>
               <div class="time-unit">
-                <span class="time-value">M</span>
+                <span class="time-value" id="minutes">M</span>
+                <span class="time-label">M</span>
+              </div>
+              <div class="time-unit">
+                <span class="time-value"id="seconds">S</span>
+                <span class="time-label">S</span>
               </div>
             </div>
             <div class="bet-info">
@@ -157,11 +163,12 @@
     .task-info {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-end;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       height: 100%;
       padding: 12px;
+      text-align: center;
     }
     .task-title {
       font-size: 18px;
@@ -185,7 +192,7 @@
     }
     .timer-display {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
       width: 100%;
       gap: 21px;
@@ -530,6 +537,7 @@
   const endButton = document.querySelector('.end-button');
   const hoursDisplay = document.querySelector('.timer-display .time-unit:nth-child(1) .time-value');
   const minutesDisplay = document.querySelector('.timer-display .time-unit:nth-child(2) .time-value');
+  const secondsDisplay = document.querySelector('.timer-display .time-unit:nth-child(3) .time-value');
   const taskTitle = document.querySelector('.task-title');
   const betValue = document.querySelector('.bet-value');
   const coinValue = document.querySelector('.coin-value');
@@ -537,6 +545,7 @@
   let totalSeconds = 0;
   let gameRunning = false;
   let currentBet = 0;
+  // Make time fields editable and numeric only
   document.querySelectorAll('.time-value').forEach(span => {
     span.setAttribute('contenteditable', 'true');
     span.addEventListener('input', () => {
@@ -567,7 +576,8 @@
     if (gameRunning) return;
     let h = parseInt(hoursDisplay.textContent) || 0;
     let m = parseInt(minutesDisplay.textContent) || 0;
-    if (h === 0 && m === 0) {
+    let s = parseInt(secondsDisplay.textContent) || 0;
+    if (h === 0 && m === 0 && s === 0) {
       alert("Set a valid time!");
       return;
     }
@@ -583,20 +593,22 @@
     }
     currentCoins -= currentBet;
     coinValue.textContent = currentCoins;
-    totalSeconds = h * 3600 + m * 60;
+    totalSeconds = h * 3600 + m * 60 + s;
     gameRunning = true;
     timerInterval = setInterval(() => {
       if (totalSeconds <= 0) {
         clearInterval(timerInterval);
-        alert(" Time's up! You lost your bet.");
+        alert("⏰ Time's up! You lost your bet.");
         gameRunning = false;
         return;
       }
       totalSeconds--;
       let displayH = Math.floor(totalSeconds / 3600);
       let displayM = Math.floor((totalSeconds % 3600) / 60);
+      let displayS = totalSeconds % 60;
       hoursDisplay.textContent = displayH;
       minutesDisplay.textContent = displayM;
+      secondsDisplay.textContent = displayS;
     }, 1000);
   });
   endButton.addEventListener('click', () => {
@@ -607,21 +619,20 @@
       let currentCoins = parseInt(coinValue.textContent) || 0;
       currentCoins += reward;
       coinValue.textContent = currentCoins;
-      alert(`Task completed! You earned ${reward} coins.`);
+      alert(`✅ Task completed! You earned ${reward} coins.`);
     } else {
-      alert(" Too late! You already lost your bet.");
+      alert("⏰ Too late! You already lost your bet.");
     }
     hoursDisplay.textContent = '0';
     minutesDisplay.textContent = '0';
+    secondsDisplay.textContent = '0';
     gameRunning = false;
     currentBet = 0;
-    });
-    document.querySelector('.dont-know-button').addEventListener('click',()=>{
-        window.open('roulette.html','TaskRoulette','width=400,height=500,resizable=yes');
-    })
+  });
+  document.querySelector('.dont-know-button').addEventListener('click', () => {
+    window.open('roulette.html', 'TaskRoulette', 'width=400,height=500,resizable=yes');
+  });
 </script>
 <audio id="spinAudio" src="spin-sound.mp3" preload="auto"></audio>
 </body>
 </html>
-
-
