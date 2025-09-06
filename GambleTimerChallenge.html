@@ -6,12 +6,9 @@
   <title>Gamble Timer Challenge | Interactive Gaming Platform | Ready to Play</title>
   <meta name="description" content="Experience the ultimate gambling challenge with our interactive timer-based gaming platform. Start your task, place your bet, and test your skills in this retro-style gaming interface." />
   <meta name="keywords" content="gambling game, timer challenge, interactive gaming, betting platform, retro games, matrix style" />
-  
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Gamble Timer Challenge | Interactive Gaming Platform" />
   <meta property="og:description" content="Experience the ultimate gambling challenge with our interactive timer-based gaming platform. Start your task, place your bet, and test your skills." />
-  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
@@ -23,12 +20,10 @@
       <header class="game-header">
         <h1 class="main-title">Are you ready to<br /><br /><br />Gamble?</h1>
       </header>
-      
       <div class="game-interface">
         <button class="action-button start-button" aria-label="Start Game">
           <span class="button-text">Start</span>
         </button>
-        
         <div class="timer-section">
           <div class="task-info">
             <h2 class="task-title" contenteditable="true">Your Task</h2>
@@ -45,15 +40,12 @@
               <span class="bet-label">Bet :</span>
               <span class="bet-value">0</span>
             </div>
-
           </div>
         </div>
-        
         <button class="action-button end-button" aria-label="End Game">
           <span class="button-text">End</span>
         </button>
       </div>
-      
       <div class="coin-indicator">
         <img src="img_image_1.png" alt="Game currency coin icon" class="coin-icon" />
         <span class="coin-value">100</span>
@@ -63,15 +55,12 @@
   </div>
     </section>
   </main>
-
   <style>
-    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Press Start 2P', monospace;
       background: #000000;
@@ -83,8 +72,6 @@
       color: #ffffff;
       overflow-x: hidden;
     }
-
-    /* Layout components */
     .game-container {
       display: flex;
       justify-content: center;
@@ -92,7 +79,6 @@
       min-height: 100vh;
       width: 100%;
     }
-
     .game-content {
       display: flex;
       flex-direction: column;
@@ -103,14 +89,12 @@
       margin-bottom: 20px;
       gap: 33px;
     }
-
     .game-header {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
     }
-
     .main-title {
       font-size: 25px;
       font-family: 'Press Start 2P', monospace;
@@ -120,7 +104,6 @@
       color: #ffffff;
       width: 100%;
     }
-
     .game-interface {
       display: flex;
       flex-direction: column;
@@ -131,7 +114,6 @@
       margin-left: 16px;
       margin-right: 16px;
     }
-
     .action-button {
       width: 92px;
       height: 91px;
@@ -146,16 +128,13 @@
       background-position: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .action-button:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
     }
-
     .action-button:active {
       transform: scale(0.95);
     }
-
     .button-text {
       font-size: 18px;
       font-family: 'Press Start 2P', monospace;
@@ -176,7 +155,6 @@
       border-radius: 6px;
       padding: 3px;
     }
-
     .task-info {
       display: flex;
       flex-direction: column;
@@ -186,7 +164,6 @@
       height: 100%;
       padding: 12px;
     }
-
     .task-title {
       font-size: 18px;
       font-family: 'Press Start 2P', monospace;
@@ -196,7 +173,6 @@
       color: #ffffff;
       width: auto;
     }
-
     .timer-title {
       font-size: 20px;
       font-family: 'Press Start 2P', monospace;
@@ -208,7 +184,6 @@
       margin-top: 14px;
       margin-right: 26px;
     }
-
     .timer-display {
       display: flex;
       justify-content: flex-end;
@@ -246,7 +221,6 @@
         background-color: #00ff00;
         color: #000000
     }
-
     .time-unit {
       display: flex;
       justify-content: center;
@@ -257,7 +231,6 @@
       border-radius: 15px;
       padding: 23px 15px;
     }
-
     .time-value {
       font-size: 35px;
       font-family: 'Press Start 2P', monospace;
@@ -284,14 +257,11 @@
         color: #ffffff;
         margin-left: 10px;
     }
-
-
     .bet-info {
       align-self: flex-start;
       width: auto;
       margin-top: 23px;
     }
-
     .bet-label {
       font-size: 20px;
       font-family: 'Press Start 2P', monospace;
@@ -300,7 +270,6 @@
       text-align: left;
       color: #ffffff;
     }
-
     .coin-indicator {
       display: flex;
       justify-content: flex-start;
@@ -312,7 +281,6 @@
       padding: 8px 18px;
       box-shadow: 0px 2px 2px rgba(171, 202, 181, 0.22);
     }
-
     .coin-icon {
       width: 28px;
       height: 28px;
@@ -352,236 +320,195 @@
         height: 118px;
         border-radius: 60px;
       }
-
       .start-button {
         margin-bottom: 45px;
       }
-
       .end-button {
         margin-bottom: 50px;
       }
-
       .button-text {
         font-size: 24px;
         line-height: 24px;
       }
-
       .timer-section {
         max-width: 376px;
         height: 275px;
         align-self: center;
       }
-
       .task-info {
         padding: 16px;
       }
-
       .task-title {
         font-size: 24px;
         line-height: 24px;
       }
-
       .timer-title {
         font-size: 28px;
         line-height: 28px;
         margin-top: 20px;
         margin-right: 36px;
       }
-
       .timer-display {
         gap: 28px;
         margin-top: 12px;
       }
-
       .time-unit {
         width: 87px;
         height: 120px;
         border-radius: 20px;
         padding: 31px 20px;
       }
-
       .time-value {
         font-size: 47px;
         line-height: 47px;
       }
-
       .bet-label {
         font-size: 28px;
         line-height: 28px;
       }
-
       .coin-indicator {
         width: auto;
         padding: 12px 27px;
         border-radius: 18px;
       }
-
       .coin-icon {
         width: 42px;
         height: 42px;
       }
     }
-
     @media (min-width: 768px) {
       .game-content {
         margin-top: 200px;
         margin-bottom: 35px;
         gap: 55px;
       }
-
       .main-title {
         font-size: 42px;
         line-height: 17px;
         width: 75%;
       }
-
       .timer-section {
         max-width: 470px;
         height: 344px;
       }
-
       .task-info {
         padding: 20px;
       }
-
       .task-title {
         font-size: 28px;
         line-height: 28px;
       }
-
       .timer-title {
         font-size: 32px;
         line-height: 32px;
         margin-top: 22px;
         margin-right: 42px;
       }
-
       .time-unit {
         width: 108px;
         height: 150px;
         border-radius: 25px;
         padding: 38px 25px;
       }
-
       .time-value {
         font-size: 58px;
         line-height: 58px;
       }
-
       .bet-label {
         font-size: 32px;
         line-height: 32px;
       }
     }
-
     @media (min-width: 1024px) {
       .game-content {
         margin-top: 242px;
         margin-bottom: 40px;
         gap: 66px;
       }
-
       .main-title {
         font-size: 50px;
         line-height: 20px;
         width: 66%;
       }
-
       .action-button {
         width: 184px;
         height: 182px;
         border-radius: 90px;
       }
-
       .start-button {
         margin-bottom: 90px;
         width: 20%;
       }
-
       .end-button {
         margin-bottom: 100px;
         width: 20%;
       }
-
       .button-text {
         font-size: 35px;
         line-height: 35px;
       }
-
       .timer-section {
         max-width: 564px;
         height: 412px;
         width: 100%;
         padding: 6px;
       }
-
       .task-info {
         padding: 24px;
         width: 80%;
       }
-
       .task-title {
         font-size: 40px;
         font-family: 'Press Start 2P', monospace;
         font-weight: 400;
         color: #ffffff;
-        width: 100%;          /* full width of container */
-        max-height: 60px;     /* optional, adjust to fit box */
-        overflow-wrap: break-word; /* wrap long words */
-        word-break: break-word;    /* wrap long words */
-        white-space: normal;       /* allow multi-line text */
+        width: 100%;      
+        max-height: 60px;    
+        overflow-wrap: break-word;
+        word-break: break-word;   
+        white-space: normal;      
         padding: 5px;
         display: block;
-        text-align: center;        /* or left, if you prefer */
-        outline: none;             /* remove focus outline, optional */
+        text-align: center;       
+        outline: none;       
 }
-
 .task-title:focus {
-  outline: 2px solid #00ff00; /* show focus highlight */
+  outline: 2px solid #00ff00;
 }
-
       }
-
       .timer-title {
         font-size: 40px;
         line-height: 40px;
         margin-top: 28px;
         margin-right: 52px;
       }
-
       .timer-display {
         gap: 42px;
         margin-top: 16px;
       }
-
       .time-unit {
         width: 130px;
         height: 180px;
         border-radius: 30px;
         padding: 46px 30px;
       }
-
       .time-value {
         font-size: 70px;
         line-height: 70px;
         margin-bottom: 6px;
       }
-
       .bet-info {
         margin-top: 46px;
       }
-
       .bet-label {
         font-size: 40px;
         line-height: 40px;
       }
-
       .coin-indicator {
         width: 22%;
         padding: 16px 36px;
         border-radius: 24px;
       }
-
       .coin-icon {
         width: 56px;
         height: 56px;
@@ -607,13 +534,10 @@
   const taskTitle = document.querySelector('.task-title');
   const betValue = document.querySelector('.bet-value');
   const coinValue = document.querySelector('.coin-value');
-
   let timerInterval;
   let totalSeconds = 0;
   let gameRunning = false;
   let currentBet = 0;
-
-  // Make H and M editable and numeric-only
   document.querySelectorAll('.time-value').forEach(span => {
     span.setAttribute('contenteditable', 'true');
     span.addEventListener('input', () => {
@@ -622,8 +546,6 @@
       }
     });
   });
-
-  // Make Task editable
   taskTitle.setAttribute('contenteditable', 'true');
   taskTitle.addEventListener('focus', () => {
     taskTitle.style.outline = '2px solid #00ff00';
@@ -631,53 +553,39 @@
   taskTitle.addEventListener('blur', () => {
     taskTitle.style.outline = 'none';
   });
-
-  // Make Bet editable and validate against coins
   betValue.setAttribute('contenteditable', 'true');
   betValue.addEventListener('input', () => {
     if (!/^\d*$/.test(betValue.textContent)) {
       betValue.textContent = betValue.textContent.replace(/[^\d]/g, '');
     }
-
     const maxCoins = parseInt(coinValue.textContent) || 0;
     let current = parseInt(betValue.textContent) || 0;
     if (current > maxCoins) {
       betValue.textContent = maxCoins;
     }
   });
-
-  // Start Timer
   startButton.addEventListener('click', () => {
     if (gameRunning) return;
-
     let h = parseInt(hoursDisplay.textContent) || 0;
     let m = parseInt(minutesDisplay.textContent) || 0;
-
     if (h === 0 && m === 0) {
       alert("Set a valid time!");
       return;
     }
-
     currentBet = parseInt(betValue.textContent) || 0;
     let currentCoins = parseInt(coinValue.textContent) || 0;
-
     if (currentBet === 0) {
       alert("Place a valid bet!");
       return;
     }
-
     if (currentBet > currentCoins) {
       alert("You don't have enough coins!");
       return;
     }
-
-    // Deduct bet
     currentCoins -= currentBet;
     coinValue.textContent = currentCoins;
-
     totalSeconds = h * 3600 + m * 60;
     gameRunning = true;
-
     timerInterval = setInterval(() => {
       if (totalSeconds <= 0) {
         clearInterval(timerInterval);
@@ -685,37 +593,25 @@
         gameRunning = false;
         return;
       }
-
       totalSeconds--;
-
       let displayH = Math.floor(totalSeconds / 3600);
       let displayM = Math.floor((totalSeconds % 3600) / 60);
-
       hoursDisplay.textContent = displayH;
       minutesDisplay.textContent = displayM;
     }, 1000);
   });
-
-  // End Timer — if early, reward double
   endButton.addEventListener('click', () => {
     if (!gameRunning) return;
-
     clearInterval(timerInterval);
-
     if (totalSeconds > 0) {
-      // Finished early → reward 2× bet
       const reward = currentBet * 2;
       let currentCoins = parseInt(coinValue.textContent) || 0;
       currentCoins += reward;
       coinValue.textContent = currentCoins;
-
       alert(`✅ Task completed! You earned ${reward} coins.`);
     } else {
-      // Timer expired already → no reward
       alert("⏰ Too late! You already lost your bet.");
     }
-
-    // Reset UI and state
     hoursDisplay.textContent = '0';
     minutesDisplay.textContent = '0';
     gameRunning = false;
@@ -725,7 +621,6 @@
         window.open('roulette.html','TaskRoulette','width=400,height=500,resizable=yes');
     })
 </script>
-  <audio id="spinAudio" src="spin-sound.mp3" preload="auto"></audio>
+<audio id="spinAudio" src="spin-sound.mp3" preload="auto"></audio>
 </body>
-
 </html>
